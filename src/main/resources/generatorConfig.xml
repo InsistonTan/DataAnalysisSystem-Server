@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!-- 用户相关 -->
+    <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+       <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://101.37.13.188:3306/dataAnalysis"
+                        userId= "root"
+                        password= "Admin123!">
+        </jdbcConnection>
+
+
+        <!--指定javaBean生成的位置 javaBean生成的位置-->
+        <javaModelGenerator targetPackage="com.Tan.domain" targetProject="src/main/java"/>
+
+
+        <!--sql映射文件生成的位置-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources"/>
+
+
+        <!--指定dao接口生成的位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.Tan.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--table是指定每个表的生成策略 生成对应表及类名-->
+        <table tableName="users"/>
+
+    </context>
+</generatorConfiguration>

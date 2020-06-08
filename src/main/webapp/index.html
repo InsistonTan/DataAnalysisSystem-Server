@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div style="text-align: center;">
+	<h5 id="changeText">正在等待结果...</h5>
+</div>
+
+</body>
+<script>
+	$(document).ready(function(){
+		var x=new Array(10,11,13,16,15);
+		var y=new Array(1,1.5,2,3,2.3);
+		var ajaxData={"x":x,"y":y};
+
+		$.ajax({
+			type:"post",
+			url:"linearRegression",
+			data:ajaxData,
+			traditional:true,
+			dataType:"JSON",
+			success:function(res)
+			{
+				console.log(res);
+				if(res.b>0)
+					$("#changeText").html("线性回归方程为：<span style='color:red;'>y</span>="+res.a.toFixed(4)+"<span style='color:red;'>x</span>"+"+"+res.b.toFixed(4));
+				else if(res.b==0)
+					$("#changeText").html("线性回归方程为：<span style='color:red;'>y</span>="+res.a.toFixed(4)+"<span style='color:red;'>x</span>");
+				else 
+					$("#changeText").html("线性回归方程为：<span style='color:red;'>y</span>="+res.a.toFixed(4)+"<span style='color:red;'>x</span>"+res.b.toFixed(4));
+			},
+			error:function(res)
+			{
+				console.log(res);
+			}
+		});
+	});
+</script>
+</html>

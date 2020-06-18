@@ -74,5 +74,13 @@ public class mathUtils {
             return data[(int)(index3Q)-1]*leftPercent+data[(int)(index3Q)]*rightPercent;
         }
     }
+    //获得数组的数据总和
+    public static double getSum(double[] data)
+    {
+        double sum=0;
+        for(double i:data)
+            sum+=i;
+        return sum;
+    }
 
 }

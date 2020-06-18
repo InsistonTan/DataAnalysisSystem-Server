@@ -1,6 +1,5 @@
 package com.Tan.test;
 import com.Tan.domain.InputData;
-import com.Tan.service.DataAnalysisService;
 import com.Tan.utils.mathUtils;
 import org.rosuda.REngine.*;
 import org.rosuda.REngine.Rserve.RConnection;
@@ -21,7 +20,7 @@ public class test1 {
         double[] data_x={151, 174, 138, 186, 128, 136, 179, 163, 152, 131};
         double[] data_y={63, 81, 56, 91, 47, 57, 76, 72, 62, 48};
         double[] data_z={10,20,30,40,50,60,70,80,90,100};
-        double[] x={151, 174, 138, 186, 128, 136, 179, 163, 152, 131};
+        double[] x={25 ,14 ,48 ,75 ,35 ,25 ,16 ,46 ,51,28};
         double[] y={5,8,11,14,17,20,23,26,29,32};
         InputData x_input=new InputData();
         //x_input.setType("covariate");
@@ -35,7 +34,61 @@ public class test1 {
         test.add(x_input);
         test.add(y_input);
         //new DataAnalysisService().reliabilityAnalysis(test);
-        new test1().test_ANOVA();
+        //new DataService().excelFileData("E:\\\\R-data\\\\data.xlsx");
+        //new test1().test_data();
+        /*String str="谭积锋";
+        String md5= MD5Utils.getMD5(str);
+        System.out.println(md5);
+        System.out.println(MD5Utils.verify(md5,str));*/
+    }
+
+    public void test_data()throws REngineException, REXPMismatchException
+    {
+        RConnection rc=new RConnection();
+        double[] x={25 ,14 ,48 ,75 ,35 ,25 ,16 ,46 ,51,28};
+        double[] y={5,8,11,14,17,20,23,26,29,32};
+        double[] z={123 ,451 ,257 ,485 ,156 ,325 ,254 ,410 ,251 ,365};
+        rc.assign("x",x);
+        rc.assign("y",y);
+        rc.assign("z",z);
+        //rc.voidEval("library(xlsx)");
+        //rc.voidEval("data <- foreign::read.spss('E:\\\\R-data\\\\data2.sav')");
+        rc.voidEval("data <- data.frame(x,y,z)");
+        rc.voidEval("setwd('E://R-data//')");
+        rc.voidEval("png(file = 'temp2.png')");
+        rc.voidEval("PerformanceAnalytics::chart.Correlation(data,method='pearson')");
+        rc.voidEval("dev.off()");
+
+    }
+    public void test_factor()throws REngineException, REXPMismatchException
+    {
+        RConnection rc=new RConnection();
+        double[] x={25 ,14 ,48 ,75 ,35 ,25 ,16 ,46 ,51,28};
+        double[] y={5,8,11,14,17,20,23,26,29,32};
+        double[] z={123 ,451 ,257 ,485 ,156 ,325 ,254 ,410 ,251 ,365};
+        rc.assign("x",x);
+        rc.assign("y",y);
+        rc.assign("z",z);
+        rc.voidEval("a <-c(254,365,154,784,585,256,321,421,74,589)");
+        rc.voidEval("data <- data.frame(x,y,z,a)");
+        //REXP rexp=rc.eval("summary(princomp(data,cor=TRUE))");
+        rc.voidEval("library(psych)");
+        //rc.voidEval("fa.parallel(data, n.obs = 10, fa = 'both', n.iter = 100, main = '平行分析碎石图')");
+        //REXP rexp=rc.eval("fa(data, nfactors = 2, rotate = 'none', fm = 'pa')");
+        //showList(rexp.asList());
+        //System.out.println(rexp);
+    }
+
+    public void test_Frequencies()throws REngineException, REXPMismatchException
+    {
+        RConnection rc=new RConnection();
+        double[] x={25 ,14 ,48 ,75 ,35 ,25 ,16 ,46 ,51,28};
+        double[] y={5,8,11,14,17,20,23,26,29,32};
+        rc.assign("data_x",x);
+        rc.assign("data_y",y);
+        REXP rexp=rc.eval("gmodels::CrossTable(data_x,data_y,prop.chisq=FALSE,prop.r=F, prop.c=F,prop.t=F,chisq=T)");
+        System.out.println(rexp);
+        //REXP rexp=rc.eval("binom.test(x=92,n=315,p=1/6)");
     }
 
     public void test_ANOVA()throws REngineException, REXPMismatchException

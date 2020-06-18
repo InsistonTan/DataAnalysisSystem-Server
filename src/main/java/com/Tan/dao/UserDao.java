@@ -1,5 +1,4 @@
 package com.Tan.dao;
-
 import com.Tan.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -7,19 +6,17 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+/*
+ * @Description:用户的持久层接口
+ * @author:TanJifeng
+ * @date:null
+ * */
 @Repository
 public interface UserDao {
-    //通过用户名获取id
-    @Select("select id from users where username=#{name}")
+    //通过用户名获取uid
+    @Select("select uid from users where username=#{name}")
     String getIdByName(@Param("name") String name);
 
-    /**
-     * 查询用户，用于登录
-     * @return
-     */
-    @Select("select * from users where username=#{username} and password=#{password}")
-    User findUserByUsernameAndPassword(User user);
     /**
      * 根据用户名查询用户，判断用户是否存在
      * @param username
@@ -33,8 +30,8 @@ public interface UserDao {
      * @param users
      * @return
      */
-    @Insert("insert into users(id,username,password,addtime) values (#{user.id},#{user.username},#{user.password},#{user.addtime})")
-    boolean insertUser(@Param("user") User users);
+    @Insert("insert into users(uid,username,password,addtime) values (#{uid},#{username},#{password},#{addtime})")
+    boolean insertUser(User users);
 
     @Select("select * from users")
     List<User> selectAll();

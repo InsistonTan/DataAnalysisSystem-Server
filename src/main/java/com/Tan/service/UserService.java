@@ -1,6 +1,7 @@
 package com.Tan.service;
 import com.Tan.dao.UserDao;
 import com.Tan.domain.User;
+import com.Tan.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
@@ -8,11 +9,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @Author Tan
- * @Description
- * @Date 2020-05-01
- */
+/*
+ * class:UserService
+ * author:TanJifeng
+ * last-update:2020-05-01
+ * */
 @Service
 public class UserService {
     @Autowired
@@ -25,28 +26,32 @@ public class UserService {
     //登陆
     public int loginCheck(User loginUser)
     {
-        User temp=userDao.selectUser(loginUser.getUsername());
-        if(temp==null)
+        User user=userDao.selectUser(loginUser.getUsername());
+        if(user==null)
             return -1;//用户不存在
-        else if(temp.getPassword().equals(loginUser.getPassword()))
+        //验证密码是否正确
+        else if(MD5Utils.verify(user.getPassword(),loginUser.getPassword()))
             return 1;//登录成功
         else return 0;//密码错误
     }
     //注册
     public int registerUser(User registerUser)
     {
-        //
+        //将密码加密
+        String pass=registerUser.getPassword();
+        registerUser.setPassword(MD5Utils.getMD5(pass));
+        //产生用户id
         int UID=0;
-        //循环产生10001-20001的UID
+        //循环产生10001-110001的UID
         Random random=new Random();
-        for(int i=0;i<10000;i++)
+        for(int i=0;i<100000;i++)
         {
-            int randomID=random.nextInt(10000)+10001;//随机产生用户ID
+            int randomID=random.nextInt(100000)+10001;//随机产生用户ID
             User u=userDao.selectUser(Integer.toString(randomID));
             if(u==null)
             {
                 UID=randomID;
-                registerUser.setId(Integer.toString(UID));
+                registerUser.setUid(Integer.toString(UID));
                 break;
             }
 

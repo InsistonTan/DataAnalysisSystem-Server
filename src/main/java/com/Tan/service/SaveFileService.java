@@ -64,6 +64,11 @@ public class SaveFileService {
             {
                 //获取第i列数据
                 String[] value=dataList.at(i).asStrings();
+                for(int k=0;k<value.length;k++)
+                {
+                    if("NaN".equals(value[k])||"-2147483648".equals(value[k]))
+                        value[k]="";
+                }
                 //将第i列数据存进readData
                 readData.put(colNames[i],value);
             }

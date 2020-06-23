@@ -35,11 +35,7 @@ public class test1 {
         test.add(y_input);
         //new DataAnalysisService().reliabilityAnalysis(test);
         //new DataService().excelFileData("E:\\\\R-data\\\\data.xlsx");
-        //new test1().test_data();
-        /*String str="谭积锋";
-        String md5= MD5Utils.getMD5(str);
-        System.out.println(md5);
-        System.out.println(MD5Utils.verify(md5,str));*/
+        new test1().test_data();
     }
 
     public void test_data()throws REngineException, REXPMismatchException
@@ -53,12 +49,17 @@ public class test1 {
         rc.assign("z",z);
         //rc.voidEval("library(xlsx)");
         //rc.voidEval("data <- foreign::read.spss('E:\\\\R-data\\\\data2.sav')");
-        rc.voidEval("data <- data.frame(x,y,z)");
+        /*rc.voidEval("data <- data.frame(x,y,z)");
         rc.voidEval("setwd('E://R-data//')");
         rc.voidEval("png(file = 'temp2.png')");
         rc.voidEval("PerformanceAnalytics::chart.Correlation(data,method='pearson')");
-        rc.voidEval("dev.off()");
-
+        rc.voidEval("dev.off()");*/
+        rc.voidEval("data1 <- data.frame(x,y,z)");
+        rc.voidEval("data <- as.matrix(data1)");
+        REXP rexp=rc.eval("BayesFactor::extractBF(BayesFactor::ttestBF(x=x,y=y,paired=TRUE,rscale='medium'))");
+        String a=rexp.asList().at("bf").asString();
+        //REXP rexp=rc.eval("BayesFactor::contingencyTableBF(data,sampleType='indepMulti',fixedMargin='cols')");
+        showList(rexp.asList());
     }
     public void test_factor()throws REngineException, REXPMismatchException
     {

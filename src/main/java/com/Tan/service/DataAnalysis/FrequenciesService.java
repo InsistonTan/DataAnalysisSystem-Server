@@ -402,4 +402,120 @@ public class FrequenciesService {
         result.put("statu","success");
         return result;
     }
+
+    //贝叶斯列联表
+    public Map bayesContingencyTables(List<InputData> dataList,String sampleType,String fixedMargin)
+    {
+        //连接RServe
+        RConnection rc=null;
+
+        //存放处理之后的结果(用于返回给前端)
+        Map result=new HashMap();
+
+        //
+        if(dataList==null||dataList.size()==0)
+        {
+            result.put("statu","failed");
+            result.put("msg","ErrorMsg:数据长度为0");
+            return result;
+        }
+        else if(dataList.size()!=2)
+        {
+            result.put("statu","failed");
+            result.put("msg","ErrorMsg:变量个数必须为2个！");
+            return result;
+        }
+        else if(dataList.get(0).getStrData().length!=dataList.get(1).getStrData().length)
+        {
+            result.put("statu","failed");
+            result.put("msg","ErrorMsg:两个变量的数据长度不一致！");
+            return result;
+        }
+
+        try{
+            rc=new RConnection();
+            //在R中声明变量
+            InputData var_x=dataList.get(0);
+            InputData var_y=dataList.get(1);
+            rc.assign(var_x.getHead(),var_x.getStrData());
+            rc.assign(var_y.getHead(),var_y.getStrData());
+            //在R中处理
+            RList rList=rc.eval("gmodels::CrossTable("+var_x.getHead()+","+var_y.getHead()
+                    +",prop.chisq=FALSE,prop.r=F, prop.c=F,prop.t=F,chisq=T)").asList();
+            //处理频数列表--------------------------------------------------------------------------
+            Map frequency_map=new HashMap();//存放频数结果
+            int[] frequency_data=rList.at(0).asIntegers();//频数数组
+            String[] x_names=rList.at(0)._attr().asList().at(1).asList().at(0).asStrings();
+            String[] y_names=rList.at(0)._attr().asList().at(1).asList().at(1).asStrings();
+            //存放var_x频数结果
+            Map x_map=new HashMap();
+            for(int i=0;i<x_names.length;i++)
+            {
+                double[] num=new double[y_names.length+1];//多的一个是用来存放total的值（该行的总数）
+                for(int j=0;j<y_names.length;j++)
+                {
+                    num[j]=frequency_data[i+j*x_names.length];
+                }
+                num[y_names.length]=mathUtils.getSum(num);//该行的总数
+                //
+                x_map.put(x_names[i],num);
+            }
+            //处理每列的总数
+            double[] col_sum_list=new double[y_names.length+1];
+            for(int i=0;i<y_names.length;i++)
+            {
+                double col_sum=0;
+                for(int j=0;j<x_names.length;j++)
+                {
+                    col_sum+=frequency_data[i*x_names.length+j];
+                }
+                col_sum_list[i]=col_sum;
+            }
+            col_sum_list[y_names.length]=mathUtils.getSum(col_sum_list);
+            x_map.put("Total",col_sum_list);
+            //
+            frequency_map.put(var_x.getHead(),x_map);
+            //存放var_y的结果
+            frequency_map.put(var_y.getHead(),y_names);
+            //
+            result.put("frequency",frequency_map);
+
+            //处理贝叶斯的结果----------------------------------------------------------------
+            rc.assign("data",frequency_data);//声明频数，生成矩阵
+            rc.voidEval("m<-matrix(data=data,nrow="+x_names.length+",ncol="+y_names.length+",byrow = FALSE,dimnames = NULL)");
+            RList blist=null;
+            if("indepMulti".equals(sampleType))
+                blist=rc.eval("BayesFactor::extractBF(BayesFactor::contingencyTableBF(m,sampleType='indepMulti',fixedMargin='"+fixedMargin+"'))").asList();
+            else
+                blist=rc.eval("BayesFactor::extractBF(BayesFactor::contingencyTableBF(m,sampleType='"+sampleType+"'))").asList();
+            double bf=blist.at("bf").asDouble();
+            double error=blist.at("error").asDouble();
+            result.put("bf",bf);
+            result.put("error",error);
+            //
+            rc.close();
+            System.out.println(result);
+        }
+        catch (REngineException e)
+        {
+            if(rc!=null)
+                rc.close();
+            result.put("statu","failed");
+            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            e.printStackTrace();
+            return result;
+        }
+        catch (REXPMismatchException e)
+        {
+            if(rc!=null)
+                rc.close();
+            result.put("statu","failed");
+            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            e.printStackTrace();
+            return result;
+        }
+
+        result.put("statu","success");
+        return result;
+    }
 }

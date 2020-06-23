@@ -11,7 +11,16 @@ public class RequestData implements Serializable {
     private String action;//前端请求的操作
     private List<InputData> dataList;//前端数据列表
     private double singleData;//前端单个数据（用于某些特殊的单个参数）
+    private String singleStr;//（用于某些特殊的单个参数）
     private Map mapData;//用于某些特殊的参数
+
+    public String getSingleStr() {
+        return singleStr;
+    }
+
+    public void setSingleStr(String singleStr) {
+        this.singleStr = singleStr;
+    }
 
     public Map getMapData() {
         return mapData;

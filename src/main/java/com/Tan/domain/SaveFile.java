@@ -12,6 +12,15 @@ public class SaveFile implements Serializable {
     private String filename;//文件名
     private String url;//存储的文件地址（R可识别的地址，如：C://A//*.*）
     private String time;//上传时间
+    private String type;//文件的权限类型
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getUid() {
         return uid;

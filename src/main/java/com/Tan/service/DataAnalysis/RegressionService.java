@@ -34,7 +34,7 @@ public class RegressionService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -165,7 +165,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -174,7 +174,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -196,7 +196,7 @@ public class RegressionService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -326,7 +326,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -335,7 +335,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -357,7 +357,7 @@ public class RegressionService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -487,7 +487,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -496,7 +496,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -515,7 +515,7 @@ public class RegressionService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -624,7 +624,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -633,7 +633,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -655,7 +655,7 @@ public class RegressionService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -785,7 +785,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -794,7 +794,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -813,7 +813,7 @@ public class RegressionService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
         //循环检查每个向量的数据长度是否一致
@@ -823,7 +823,7 @@ public class RegressionService {
             if(data.getData().length!=len)
             {
                 result.put("statu","failed");
-                result.put("msg","ErrorMsg:变量数据长度不一致");
+                result.put("msg","ErrorMsg:Variable data length is inconsistent");
                 return result;
             }
         }
@@ -934,7 +934,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -943,7 +943,7 @@ public class RegressionService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }

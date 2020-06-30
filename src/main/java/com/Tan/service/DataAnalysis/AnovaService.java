@@ -30,7 +30,7 @@ public class AnovaService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -52,7 +52,7 @@ public class AnovaService {
         if(dependentVar==null)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:没有因变量！");
+            result.put("msg","ErrorMsg:No dependent variable！");
             return result;
         }
 
@@ -101,7 +101,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -110,7 +110,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -119,7 +119,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -140,7 +140,7 @@ public class AnovaService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -163,7 +163,7 @@ public class AnovaService {
         if(dependentVar==null)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:没有因变量！");
+            result.put("msg","ErrorMsg:No dependent variable!");
             return result;
         }
         //找协变量,存放在covarList
@@ -239,7 +239,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -248,7 +248,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -257,7 +257,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -278,7 +278,7 @@ public class AnovaService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -302,7 +302,7 @@ public class AnovaService {
         if(depenList.size()<2)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:因变量个数不能小于2个！");
+            result.put("msg","ErrorMsg:The number of dependent variables cannot be less than 2！");
             return result;
         }
 
@@ -362,7 +362,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -371,7 +371,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -380,7 +380,7 @@ public class AnovaService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }

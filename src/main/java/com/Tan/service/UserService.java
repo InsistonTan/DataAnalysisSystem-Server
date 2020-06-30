@@ -23,6 +23,7 @@ public class UserService {
     {
         return userDao.getIdByName(user.getUsername());
     }
+
     //登陆
     public int loginCheck(User loginUser)
     {
@@ -30,10 +31,13 @@ public class UserService {
         if(user==null)
             return -1;//用户不存在
         //验证密码是否正确
-        else if(MD5Utils.verify(user.getPassword(),loginUser.getPassword()))
+        else if((!loginUser.getUsername().equals("admin"))&&MD5Utils.verify(user.getPassword(),loginUser.getPassword()))
             return 1;//登录成功
+        else if(loginUser.getUsername().equals("admin")&&loginUser.getPassword().equals(user.getPassword()))
+            return 1;//管理员登陆成功
         else return 0;//密码错误
     }
+
     //注册
     public int registerUser(User registerUser)
     {
@@ -79,6 +83,35 @@ public class UserService {
         {
             System.out.println("此用户名已被注册："+temp.getUsername());
             return -1;//用户已存在，注册失败
+        }
+    }
+
+    //修改密码
+    public int updatePassword(User user)
+    {
+        //管理员修改密码
+        if(user.getUsername().equals("admin"))
+        {
+            if(user.getPassword()!=null)
+            {
+                if(userDao.updatePassword(user))
+                    return 1;//修改成功
+                else return 0;//失败
+            }
+            else return -1;//修改失败，密码为空
+        }
+        else //普通用户修改密码
+        {
+            if(user.getPassword()!=null)
+            {
+                String pass=user.getPassword();//明文密码
+                String md5_pass=MD5Utils.getMD5(pass);//加密后的密码
+                user.setPassword(md5_pass);
+                if(userDao.updatePassword(user))
+                    return 1;//成功
+                else return 0;//失败
+            }
+            else return -1;//修改失败，密码为空
         }
     }
 

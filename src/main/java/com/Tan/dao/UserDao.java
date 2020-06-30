@@ -3,6 +3,7 @@ import com.Tan.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public interface UserDao {
     //通过用户名获取uid
     @Select("select uid from users where username=#{name}")
     String getIdByName(@Param("name") String name);
+
+    //更新密码
+    @Update("update users set password=#{password} where uid=#{uid}")
+    boolean updatePassword(User user);
 
     /**
      * 根据用户名查询用户，判断用户是否存在

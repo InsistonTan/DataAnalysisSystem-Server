@@ -30,7 +30,7 @@ public class T_testsService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -54,7 +54,7 @@ public class T_testsService {
         if(groupVar==null)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:缺少分组变量");
+            result.put("msg","ErrorMsg:Missing grouping variable");
             return result;
         }
 
@@ -87,7 +87,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -96,7 +96,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -105,7 +105,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -126,7 +126,7 @@ public class T_testsService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -134,7 +134,7 @@ public class T_testsService {
         if ((dataList.size()%2)!=0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:选择了奇数个变量，无法按序两两配对");
+            result.put("msg","ErrorMsg:An odd number of variables have been selected and cannot be paired in sequence");
             return result;
         }
 
@@ -170,7 +170,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -179,7 +179,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -188,7 +188,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -209,7 +209,7 @@ public class T_testsService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -241,7 +241,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -250,7 +250,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -259,7 +259,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -280,7 +280,7 @@ public class T_testsService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -304,7 +304,7 @@ public class T_testsService {
         if(groupVar==null)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:缺少分组变量");
+            result.put("msg","ErrorMsg:Missing grouping variable");
             return result;
         }
 
@@ -333,7 +333,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -342,7 +342,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -351,7 +351,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -372,7 +372,7 @@ public class T_testsService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -380,7 +380,7 @@ public class T_testsService {
         if ((dataList.size()%2)!=0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:选择了奇数个变量，无法按序两两配对");
+            result.put("msg","ErrorMsg:An odd number of variables have been selected and cannot be paired in sequence");
             return result;
         }
 
@@ -412,7 +412,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -421,7 +421,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -430,7 +430,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -451,7 +451,7 @@ public class T_testsService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
 
@@ -479,7 +479,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -488,7 +488,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -497,7 +497,7 @@ public class T_testsService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }

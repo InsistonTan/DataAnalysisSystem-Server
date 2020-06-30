@@ -39,6 +39,10 @@ public class UserController {
             request.getSession().setAttribute("username",loginUser.getUsername());
             String uid=userService.getIdByName(loginUser);
             request.getSession().setAttribute("uid",uid);
+            //
+            /*String name=(String) request.getSession().getAttribute("username");
+            String id=(String) request.getSession().getAttribute("uid");
+            System.out.println(name+":"+id);*/
             //设置返回前端的信息
             result.put("statu","success");
             result.put("uid",uid);
@@ -47,12 +51,12 @@ public class UserController {
         else if(check_result==0)
         {
             result.put("statu","failed");
-            result.put("msg","密码错误");
+            result.put("msg","wrong password");
         }
         else if(check_result==-1)
         {
             result.put("statu","failed");
-            result.put("msg","用户不存在");
+            result.put("msg","User does not exist");
         }
 
         return result;
@@ -75,19 +79,68 @@ public class UserController {
         else if (check_result==0)
         {
             result.put("statu","failed");
-            result.put("msg","注册失败！");
+            result.put("msg","sign up failed！");
         }
         else if (check_result==-1)
         {
             result.put("statu","failed");
-            result.put("msg", "用户名已存在，请更换用户名");
+            result.put("msg", "Username already exists,please change");
         }
         else
         {
             result.put("statu","failed");
-            result.put("msg","未知错误！");
+            result.put("msg","unknown mistake!");
         }
         return result;
+    }
+
+    //修改密码
+    @RequestMapping(value = "/api/updatePass")
+    @ResponseBody
+    public Map updatePass(@RequestBody User user)
+    {
+        Map result=new HashMap();
+        //
+        Object uid_obj=request.getSession().getAttribute("uid");
+        Object username_obj=request.getSession().getAttribute("username");
+        if(uid_obj!=null&&username_obj!=null)//判断该用户已经登陆
+        {
+            String uid=String.valueOf(uid_obj);
+            String username=String.valueOf(username_obj);
+            user.setUid(uid);
+            user.setUsername(username);
+            int statu=userService.updatePassword(user);//更新密码
+            if(statu==1)
+            {
+                result.put("statu","success");
+                clearInfo();//清除登录信息
+                return result;
+            }
+            else if(statu==0)
+            {
+                result.put("statu","failed");
+                result.put("msg","Update failed:Server error.");
+                return result;
+            }
+            else if(statu==-1)
+            {
+                result.put("statu","failed");
+                result.put("msg","Update failed:New password is empty.");
+                return result;
+            }
+            else
+            {
+                result.put("statu","failed");
+                result.put("msg","Update failed:Unknow error.");
+                return result;
+            }
+        }
+        else //未登录
+        {
+            result.put("statu","failed");
+            result.put("msg","Update failed:You have not signed in.");
+            return result;
+        }
     }
 
     //检查登陆
@@ -98,6 +151,8 @@ public class UserController {
         Map user=new HashMap();
         String uid=String.valueOf(request.getSession().getAttribute("uid"));
         String username=String.valueOf(request.getSession().getAttribute("username"));
+        //
+        System.out.println("checkLogin:"+username+":"+uid);
         if(uid!=null)
         {
             user.put("uid",uid);
@@ -108,6 +163,7 @@ public class UserController {
 
     //清除登陆信息
     @RequestMapping(value = "/api/clearInfo")
+    @ResponseBody
     public void clearInfo()
     {
         request.getSession().removeAttribute("uid");

@@ -36,7 +36,7 @@ public class FactorService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
         int len=dataList.get(0).getData().length;
@@ -45,7 +45,7 @@ public class FactorService {
             if(item.getData().length!=len)
             {
                 result.put("statu","failed");
-                result.put("msg","ErrorMsg:变量"+item.getHead()+"的数据长度与其他的变量不一致！");
+                result.put("msg","ErrorMsg:The data length of the variable:"+item.getHead()+" is inconsistent with other variables！");
                 return result;
             }
         }
@@ -129,7 +129,7 @@ public class FactorService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -138,7 +138,7 @@ public class FactorService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -160,7 +160,7 @@ public class FactorService {
         if(dataList==null||dataList.size()==0)
         {
             result.put("statu","failed");
-            result.put("msg","ErrorMsg:数据长度为0");
+            result.put("msg","ErrorMsg:Data length is 0");
             return result;
         }
         int len=dataList.get(0).getData().length;
@@ -169,7 +169,7 @@ public class FactorService {
             if(item.getData().length!=len)
             {
                 result.put("statu","failed");
-                result.put("msg","ErrorMsg:变量"+item.getHead()+"的数据长度与其他的变量不一致！");
+                result.put("msg","ErrorMsg:The data length of the variable:"+item.getHead()+" is inconsistent with other variables！");
                 return result;
             }
         }
@@ -270,7 +270,7 @@ public class FactorService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -279,7 +279,7 @@ public class FactorService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }

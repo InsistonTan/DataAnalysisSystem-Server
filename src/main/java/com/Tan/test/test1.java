@@ -35,7 +35,17 @@ public class test1 {
         test.add(y_input);
         //new DataAnalysisService().reliabilityAnalysis(test);
         //new DataService().excelFileData("E:\\\\R-data\\\\data.xlsx");
-        new test1().test_data();
+        //new test1().test_data();
+        String a="aaa.";
+        String b="bbb";
+        String[] ta=a.split("\\.");
+        String[] tb=b.split("\\.");
+        System.out.println("a:"+ta.length);
+        for(String i:ta)
+            System.out.println(i);
+        System.out.println("b:"+tb.length);
+        for(String i:tb)
+            System.out.println(i);
     }
 
     public void test_data()throws REngineException, REXPMismatchException
@@ -54,12 +64,13 @@ public class test1 {
         rc.voidEval("png(file = 'temp2.png')");
         rc.voidEval("PerformanceAnalytics::chart.Correlation(data,method='pearson')");
         rc.voidEval("dev.off()");*/
-        rc.voidEval("data1 <- data.frame(x,y,z)");
-        rc.voidEval("data <- as.matrix(data1)");
-        REXP rexp=rc.eval("BayesFactor::extractBF(BayesFactor::ttestBF(x=x,y=y,paired=TRUE,rscale='medium'))");
-        String a=rexp.asList().at("bf").asString();
+        //rc.voidEval("data1 <- data.frame(x,y,z)");
+        //rc.voidEval("data <- as.matrix(data1)");
+        //REXP rexp=rc.eval("BayesFactor::extractBF(BayesFactor::ttestBF(x=x,y=y,paired=TRUE,rscale='medium'))");
+        //String a=rexp.asList().at("bf").asString();
         //REXP rexp=rc.eval("BayesFactor::contingencyTableBF(data,sampleType='indepMulti',fixedMargin='cols')");
-        showList(rexp.asList());
+        //showList(rexp.asList());
+
     }
     public void test_factor()throws REngineException, REXPMismatchException
     {

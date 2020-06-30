@@ -1,12 +1,14 @@
 package com.Tan.service;
 import com.Tan.dao.SaveFileDao;
 import com.Tan.domain.SaveFile;
+import org.apache.ibatis.annotations.Select;
 import org.jetbrains.annotations.NotNull;
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
 import org.rosuda.REngine.RList;
 import org.rosuda.REngine.Rserve.RConnection;
+import org.rosuda.REngine.Rserve.RserveException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,12 @@ public class SaveFileService {
                 rc.voidEval("data <- read.csv(file='"+filePath+"',header=T,na.strings=c('NA'))");
             else if("sav".equalsIgnoreCase(type))
                 rc.voidEval("data <- foreign::read.spss('"+filePath+"')");
+            else
+            {
+                result.put("statu","failed");
+                result.put("msg","Unsupported file type.");
+                return result;
+            }
             //得到数据
             REXP rexp=rc.eval("data");
             RList dataList=rexp.asList();//数据列表
@@ -54,7 +62,7 @@ public class SaveFileService {
             if(colNames==null)
             {
                 result.put("statu","failed");
-                result.put("msg","后台处理数据错误!\nErrorMsg:数据文件没有数据或没有列名");
+                result.put("msg","Data processing error!\nErrorMsg:The data file has no data or no column names");
                 return result;
             }
             //存放每一列数据
@@ -74,12 +82,21 @@ public class SaveFileService {
             }
             result.put("data",readData);
         }
+        catch (RserveException e)
+        {
+            if(rc!=null)
+                rc.close();
+            result.put("statu","failed");
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
+            e.printStackTrace();
+            return result;
+        }
         catch (REngineException e)
         {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -88,7 +105,7 @@ public class SaveFileService {
             if(rc!=null)
                 rc.close();
             result.put("statu","failed");
-            result.put("msg","后台处理数据错误!\nErrorMsg:"+e.getMessage());
+            result.put("msg","Data processing error!\nErrorMsg:"+e.getMessage());
             e.printStackTrace();
             return result;
         }
@@ -99,7 +116,7 @@ public class SaveFileService {
         return result;
     }
 
-    //通过index获得某一个记录
+    //通过 index和 uid获得某一个记录
     public SaveFile getOneByIndexAndUid(SaveFile file)
     {
         return saveFileDao.getOneByIndexAndUid(file);
@@ -123,7 +140,18 @@ public class SaveFileService {
     //删除记录
     public boolean deleteSaveFile(SaveFile file)
     {
-        return saveFileDao.addSaveFile(file);
+        return saveFileDao.deleteSaveFile(file);
     }
 
+    //获取某个 index的公共文件
+    public SaveFile getOnePublicByIndex(SaveFile file)
+    {
+        return saveFileDao.getOnePubicByIndex(file);
+    }
+
+    //选择所有公共文件
+    public List<SaveFile> getAllPublic()
+    {
+        return saveFileDao.getAllPublic();
+    }
 }
